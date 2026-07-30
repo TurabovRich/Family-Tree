@@ -1,7 +1,5 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n/context";
-import { LanguageToggle } from "./LanguageToggle";
 import { TreeView } from "./TreeView";
 import type { PersonRow, SpouseRow } from "@/lib/types";
 
@@ -13,20 +11,18 @@ type Props = {
 };
 
 export function HomePage({ people, spouses, defaultRootId, loadError }: Props) {
-  const { t } = useI18n();
-
   return (
     <div className="flex flex-1 flex-col">
       <header className="flex items-center justify-between border-b border-black/5 px-6 py-4 dark:border-white/10">
         <h1 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-          {t("title")}
+          Oila shajarasi
         </h1>
-        <LanguageToggle />
       </header>
-      <main className="flex flex-1 flex-col p-6">
+      <main className="flex flex-1 flex-col overflow-hidden">
         {loadError ? (
           <p className="p-8 text-center text-red-600 dark:text-red-400">
-            {t("loadError")}
+            Ma&apos;lumotlarni yuklab bo&apos;lmadi. Supabase sozlamalarini
+            tekshiring.
           </p>
         ) : defaultRootId ? (
           <TreeView
@@ -36,7 +32,7 @@ export function HomePage({ people, spouses, defaultRootId, loadError }: Props) {
           />
         ) : (
           <p className="p-8 text-center text-zinc-500 dark:text-zinc-400">
-            {t("empty")}
+            Bazada hali birorta odam yo&apos;q.
           </p>
         )}
       </main>
